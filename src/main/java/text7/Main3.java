@@ -8,33 +8,30 @@ public class Main3 {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int a = Integer.parseInt(br.readLine());
-		int root = 2;
+		int index = Integer.parseInt(br.readLine());
 		int n = 1;
-		int m = 2;
-		int count = 1;
-			while(count > a) {
-				if(a == 1) {System.out.println("1/1");break;}
-				if(root%2 == 0) {
-					n++;
-					m--;
-					count++;
-					if(m == 1) {
-						root++;
-					}
-				}
-				if(root%2 != 0) {
+		int m = 0;
+		int col = 1;
+		int count = 0;
+			while (index > count) {
+				if(col%2 != 0) {
 					n--;
 					m++;
 					count++;
-					if(n == 1) {
-						root++;
+					if(n <= 0) {
+						n++;
+						col++;
+					}
+				}else if(col%2 == 0) {
+					n++;
+					m--;
+					count++;
+					if(m <= 0) {
+						m++;
+						col++;
 					}
 				}
-				if(count == a ) {
-					System.out.println(n+"/"+m);
-					break;
-				}
 			}
+		System.out.println(m+"/"+n);
 	}
 }
