@@ -1,4 +1,4 @@
-package text7;
+package test7;
 
 import java.io.BufferedReader;
 import java.io.IOException;
