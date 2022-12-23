@@ -13,18 +13,18 @@ public class Main4 {
 		int M = Integer.parseInt(st.nextToken());
 		int N = Integer.parseInt(st.nextToken());
 		
-		boolean[] arr = new boolean[N + 1];
+		boolean[] arr = new boolean[N+1];
 		arr[0] = arr[1] = true;
-		
-		for(int i = 2; i <= Math.sqrt(arr.length); i++) {
+		for(int i = 2; i <= Math.sqrt(arr.length);i++) {
 			for(int j = i * i; j < arr.length; j += i) {
 				arr[j] = true;
-				System.out.println(j);
 			}
 		}
-				
+		
 		for(int i = M; i <= N; i++) {
-//			if(!arr[i]) System.out.println(i);
+			if(arr[i] == false) {
+				System.out.println(i);
+			}
 		}
 	}
 }
