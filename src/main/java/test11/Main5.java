@@ -1,31 +1,59 @@
 package test11;
 
 import java.io.*;
-import java.util.StringTokenizer;
 
 public class Main5{
-	static String[][] star;
+	static char[][] star;
 	public static void main(String[] args) throws NumberFormatException, IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int N = Integer.parseInt(br.readLine());
-		int none = 3;
-		star = new String[N][N];
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		for(int i = 0; i < star.length; i++) {
-			for(int j = 0; j < star.length; j++) {
-				star[i][j] = "*";
-				if(i == none/3 && j == none/3) {
-					star[none][none] = " ";
+		int N = Integer.parseInt(br.readLine());
+		
+		star = new char[N][N]; //N*N 크기
+		
+		makeStar(0, 0, N, false);
+
+		for(int i=0; i<N; i++) {
+			bw.write(star[i]);
+			bw.write('\n');
+		}
+
+		bw.flush();
+		bw.close();
+		
+	}
+	static void makeStar(int x, int y, int N, boolean blank) {
+
+		// 공백칸일 경우
+		if(blank) {
+			for(int i = x; i < x + N; i++) {
+				for(int j = y; j < y + N; j++) {
+					star[i][j] = ' ';
+				}
+			}
+			return;
+		}
+
+		if(N == 1) {
+			star[x][y] = '*';
+			return;
+		}
+
+		int size = N / 3;
+		int count = 0;
+		for(int i=x; i<x + N; i+=size) {
+			for(int j=y; j<y + N; j+=size) {
+				count ++;
+				if(count == 5) {
+					makeStar(i, j, size, true);
+				}
+				else {
+					makeStar(i, j, size, false);
 				}
 			}
 		}
 		
 
-		for(int i = 0; i < star.length; i++) {
-			for(int j = 0; j < star.length; j++) {
-				System.out.print(star[i][j]);
-			}
-			System.out.println();
-		}
 	}
 }
